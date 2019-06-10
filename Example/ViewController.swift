@@ -15,6 +15,7 @@ import FloraKit
 class ViewController: UIViewController {
 
     // MARK: Properties
+    let floraKit = FloraKit()
     
     /// The Label
     lazy var label: UILabel = {
@@ -33,6 +34,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        floraKit.start()
     }
     
     /// LoadView
