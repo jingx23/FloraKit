@@ -1,0 +1,7 @@
+# FloraKit document generator jazzy settings
+
+copyright: Copyright 2019 Jan Scheithauer
+author: Jan Scheithauer
+xcodebuild_arguments: [-target, FloraKit-iOS]
+clean: true
+output: ./Documentation
