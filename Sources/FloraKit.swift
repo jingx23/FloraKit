@@ -10,9 +10,14 @@
 @_exported import Foundation
 
 public class FloraKit: NSObject {
-    private let scanner = FloraScanner()
+    private let floraService = FloraService()
 
     public func start() {
-        scanner.startScanning(duration: 10)
+        floraService.scan(duration: 5) {[weak self] peripherals in
+            for peripheral in peripherals {
+                self?.floraService.read(peripheral: peripheral)
+            }
+            print("Whoop: \(peripherals.count)")
+        }
     }
 }
