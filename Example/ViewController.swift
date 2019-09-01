@@ -33,8 +33,9 @@ class ViewController: UIViewController {
     /// View did load
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.floraKit.delegate = self
         self.view.backgroundColor = .white
-        floraKit.start()
+        self.floraKit.readAll()
     }
     
     /// LoadView
@@ -42,4 +43,12 @@ class ViewController: UIViewController {
         self.view = self.label
     }
 
+}
+
+extension ViewController: FloraKitDelegate {
+    
+    func floraKit(_ floraKit: FloraKit, didRecieveSensorData sensorData: FloraSensorData) {
+        print(sensorData.temp)
+    }
+    
 }
