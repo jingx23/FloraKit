@@ -6,55 +6,95 @@
 import Foundation
 import CoreBluetooth
 
-protocol FloraServiceDelegate {
-    func floraService(_ service: FloraService, didRecieveSensorData sensorData: FloraService.SensorData)
+protocol FloraServiceDelegate: class {
+    func floraService(_ service: FloraService, didRecieveSensorData sensorData: FloraSensorData)
+}
+
+public class FloraSensorData: CustomDebugStringConvertible {
+    let sensorId: UUID
+    public fileprivate(set) var temp: Float
+    public fileprivate(set) var lux: Int
+    public fileprivate(set) var moisture: Int
+    public fileprivate(set) var conductivity: Int
+    public fileprivate(set) var battery: Int
+
+    public var debugDescription: String {
+        return "sensorId: \(sensorId.uuidString),\ntemp: \(temp),\nlux: \(lux),\nmoisture: \(moisture),\nconductivity: \(conductivity),\nbattery: \(battery)"
+    }
+    
+    init(sensorId: UUID) {
+        self.sensorId = sensorId
+        self.temp = 0
+        self.lux = 0
+        self.moisture = 0
+        self.conductivity = 0
+        self.battery = 0
+    }
+
 }
 
 class FloraService: NSObject {
     
-    public class SensorData: CustomDebugStringConvertible {
-        let sensorId: UUID
-        fileprivate(set) var temp: Float
-        fileprivate(set) var lux: Int
-        fileprivate(set) var moisture: Int
-        fileprivate(set) var conductivity: Int
-        fileprivate(set) var battery: Int
-
-        var debugDescription: String {
-            return "sensorId: \(sensorId.uuidString),\ntemp: \(temp),\nlux: \(lux),\nmoisture: \(moisture),\nconductivity: \(conductivity),\nbattery: \(battery)"
-        }
-        
-        init(sensorId: UUID) {
-            self.sensorId = sensorId
-            self.temp = 0
-            self.lux = 0
-            self.moisture = 0
-            self.conductivity = 0
-            self.battery = 0
-        }
-
-    }
-
-    private static let miFloraPrefix = "FE95"
+    private static let miFloraPrefix: String = "FE95"
+    public static let defaultScanDuration: Int = 10
+    
     private var discoveredSensors: [CBPeripheral] = []
-    private var discoveredSensorData: [UUID: SensorData] = [:]
-    open var delegate: FloraServiceDelegate?
-    private lazy var manager = CBCentralManager(delegate: self, queue: DispatchQueue.main, options: nil)
+    private var discoveredSensorData: [UUID: FloraSensorData] = [:]
+    open weak var delegate: FloraServiceDelegate?
+    open var scanDuration: Int = FloraService.defaultScanDuration
+    private var manager = CBCentralManager()
+    private var sensorsToDiscover: [CBUUID] = []
 
     private let serviceUUID = CBUUID(string: "00001204-0000-1000-8000-00805F9B34FB")
     private let writeModeUUID = CBUUID(string: "00001A00-0000-1000-8000-00805F9B34FB")
     private let sensorDataUUID = CBUUID(string: "00001A01-0000-1000-8000-00805F9B34FB")
     private let batteryUUID = CBUUID(string: "00001A02-0000-1000-8000-00805F9B34FB")
     
-    public convenience init(delegate: FloraServiceDelegate?) {
+    public convenience init(scanDuration: Int = FloraService.defaultScanDuration, delegate: FloraServiceDelegate?) {
         self.init()
+        self.scanDuration = scanDuration
         self.delegate = delegate
     }
-
-    func scan(duration: Int, completion: @escaping (_ floraDevices: [CBPeripheral]) -> Void) {
-        _ = manager
+    
+    func scan(completion: @escaping (_ floraDevices: [UUID]) -> Void) {
+        self.scan { (peripherals: [CBPeripheral]) in
+            completion(peripherals.compactMap( { $0.identifier } ))
+        }
+    }
+        
+    func readAll() {
+        self.scan {[weak self] (peripherals: [CBPeripheral]) in
+            for peripheral in peripherals {
+                self?.manager.connect(peripheral)
+            }
+        }
+    }
+    
+    func read(uuids: [UUID]) {
         self.discoveredSensors = []
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double(duration)) { [weak self] in
+        self.manager = CBCentralManager(delegate: self, queue: DispatchQueue.main, options: nil)
+        var runCount = 0
+        
+        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[weak self] timer in
+            guard let self = self else {
+                return
+            }
+            self.discoveredSensors = self.manager.retrievePeripherals(withIdentifiers: uuids)
+            runCount += 1
+            
+            if runCount == self.scanDuration || (self.discoveredSensors.count == uuids.count) {
+                timer.invalidate()
+                for sensor in self.discoveredSensors {
+                    self.manager.connect(sensor)
+                }
+            }
+        }
+    }
+    
+    private func scan(completion: @escaping (_ floraDevices: [CBPeripheral]) -> Void) {
+        self.discoveredSensors = []
+        self.manager = CBCentralManager(delegate: self, queue: DispatchQueue.main, options: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(self.scanDuration)) { [weak self] in
             guard let self = self else { return }
             self.manager.stopScan()
             completion(self.discoveredSensors)
@@ -65,9 +105,6 @@ class FloraService: NSObject {
         manager.scanForPeripherals(withServices: [CBUUID(string: FloraService.miFloraPrefix)], options: nil)
     }
 
-    func read(peripheral: CBPeripheral) {
-        manager.connect(peripheral)
-    }
 }
 
 extension FloraService: CBCentralManagerDelegate {
@@ -79,14 +116,14 @@ extension FloraService: CBCentralManagerDelegate {
     }
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String: Any], rssi RSSI: NSNumber) {
-        if !discoveredSensors.contains(peripheral) {
-            discoveredSensors.append(peripheral)
+        if !self.discoveredSensors.contains(peripheral) {
+            self.discoveredSensors.append(peripheral)
         }
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         print("✅", "Connected to:", "\(peripheral.name ?? ""), \(peripheral.identifier.uuidString)")
-        discoveredSensorData[peripheral.identifier] = SensorData(sensorId: peripheral.identifier)
+        discoveredSensorData[peripheral.identifier] = FloraSensorData(sensorId: peripheral.identifier)
         peripheral.delegate = self
         peripheral.discoverServices(nil)
     }
