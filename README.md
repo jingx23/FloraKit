@@ -28,9 +28,9 @@ FloraKit is a Swift Framework which makes it possible to read data from Xiaomi M
 
 ## TODO´s
 - [x] Reading Data from Sensors
-- [] Error Handling
-- [] Better Documentation
-- [] Build real example instead of debug prints
+- [ ] Error Handling
+- [ ] Better Documentation
+- [ ] Build real example instead of debug prints
 
 ## Features
 
