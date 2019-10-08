@@ -46,9 +46,17 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: FloraKitDelegate {
-    
-    func floraKit(_ floraKit: FloraKit, didRecieveSensorData sensorData: FloraSensorData) {
-        print(sensorData.temp)
+    func floraKit(_ floraKit: FloraKit, stateChanged state: FloraServiceState) {
+        switch state {
+        case .beginScan:
+            print("Begin Scan")
+        case .endScan:
+            print("Scan complete")
+        case .deviceConnected(let name, let uuid):
+            print("Connected to \(name ?? "") \(uuid.uuidString)")
+        case .recievedSensorData(let sensorData):
+            print(sensorData.debugDescription)
+            print("Sensor data recieved!")
+        }
     }
-    
 }

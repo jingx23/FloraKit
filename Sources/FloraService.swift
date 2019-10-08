@@ -14,7 +14,7 @@ public enum FloraServiceState {
 }
 
 protocol FloraServiceDelegate: class {
-    func floraService(_ service: FloraService, state: FloraServiceState)
+    func floraService(_ service: FloraService, stateChanged state: FloraServiceState)
 }
 
 public class FloraSensorData: CustomDebugStringConvertible {
@@ -99,14 +99,14 @@ class FloraService: NSObject {
     }
     
     private func scan(completion: @escaping (_ floraDevices: [CBPeripheral]) -> Void) {
-        self.delegate?.floraService(self, state: .beginScan)
+        self.delegate?.floraService(self, stateChanged: .beginScan)
         self.discoveredSensors = []
         self.manager = CBCentralManager(delegate: self, queue: DispatchQueue.main, options: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + Double(self.scanDuration)) { [weak self] in
             guard let self = self else { return }
             self.manager.stopScan()
             completion(self.discoveredSensors)
-            self.delegate?.floraService(self, state: .endScan)
+            self.delegate?.floraService(self, stateChanged: .endScan)
         }
     }
 
@@ -131,7 +131,7 @@ extension FloraService: CBCentralManagerDelegate {
     }
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        self.delegate?.floraService(self, state: .deviceConnected(name: peripheral.name, uuid: peripheral.identifier))
+        self.delegate?.floraService(self, stateChanged: .deviceConnected(name: peripheral.name, uuid: peripheral.identifier))
         discoveredSensorData[peripheral.identifier] = FloraSensorData(sensorId: peripheral.identifier)
         peripheral.delegate = self
         peripheral.discoverServices(nil)
@@ -202,6 +202,6 @@ extension FloraService: CBPeripheralDelegate {
             return
         }
         discoveredSensorData[peripheral.identifier] = nil
-        delegate?.floraService(self, state: .recievedSensorData(data: sensorData))
+        delegate?.floraService(self, stateChanged: .recievedSensorData(data: sensorData))
     }
 }

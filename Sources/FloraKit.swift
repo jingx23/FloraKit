@@ -10,9 +10,10 @@
 @_exported import Foundation
 
 public protocol FloraKitDelegate: class {
-    func floraKit(_ floraKit: FloraKit, didRecieveSensorData sensorData: FloraSensorData)
+    func floraKit(_ floraKit: FloraKit, stateChanged state: FloraServiceState)
 }
 
+/// This class is only a wrapper class around FloraService to avoid exposing unecessary delegate methods
 public class FloraKit: NSObject {
     private let floraService: FloraService = FloraService()
     public weak var delegate: FloraKitDelegate?
@@ -41,18 +42,7 @@ public class FloraKit: NSObject {
 }
 
 extension FloraKit: FloraServiceDelegate {
-    func floraService(_ service: FloraService, state: FloraServiceState) {
-        switch state {
-        case .beginScan:
-            print("Begin Scan")
-        case .endScan:
-            print("Scan complete")
-        case .deviceConnected(let name, let uuid):
-            print("Connected \(name ?? "") to \(uuid.uuidString)")
-        case .recievedSensorData(let sensorData):
-            print("Sensor data recieved!")
-            //print(sensorData.debugDescription)
-            self.delegate?.floraKit(self, didRecieveSensorData: sensorData)
-        }
+    func floraService(_ service: FloraService, stateChanged state: FloraServiceState) {
+        self.delegate?.floraKit(self, stateChanged: state)
     }
 }
