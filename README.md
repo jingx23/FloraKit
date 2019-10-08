@@ -23,8 +23,14 @@
 # FloraKit
 
 <p align="center">
-ℹ️ Short description of FloraKit
+FloraKit is a Swift Framework which makes it possible to read data from Xiaomi Mi Plant sensors.
 </p>
+
+## TODO´s
+- [x] Reading Data from Sensors
+- [] Error Handling
+- [] Better Documentation
+- [] Build real example instead of debug prints
 
 ## Features
 
@@ -52,7 +58,7 @@ pod 'FloraKit'
 To integrate FloraKit into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "Jan Scheithauer/FloraKit"
+github "jingx23/FloraKit"
 ```
 
 Run `carthage update` to build the framework and drag the built `FloraKit.framework` into your Xcode project. 
