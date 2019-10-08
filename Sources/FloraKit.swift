@@ -41,8 +41,18 @@ public class FloraKit: NSObject {
 }
 
 extension FloraKit: FloraServiceDelegate {
-    func floraService(_ service: FloraService, didRecieveSensorData sensorData: FloraSensorData) {
-        print(sensorData.debugDescription)
-        self.delegate?.floraKit(self, didRecieveSensorData: sensorData)
+    func floraService(_ service: FloraService, state: FloraServiceState) {
+        switch state {
+        case .beginScan:
+            print("Begin Scan")
+        case .endScan:
+            print("Scan complete")
+        case .deviceConnected(let name, let uuid):
+            print("Connected \(name ?? "") to \(uuid.uuidString)")
+        case .recievedSensorData(let sensorData):
+            print("Sensor data recieved!")
+            //print(sensorData.debugDescription)
+            self.delegate?.floraKit(self, didRecieveSensorData: sensorData)
+        }
     }
 }
