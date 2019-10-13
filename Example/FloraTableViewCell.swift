@@ -25,6 +25,12 @@ public final class FloraTableViewCell: UITableViewCell {
         return floraLabelView
     }()
     
+    private lazy var sensorNameLabelView: FloraValueView = {
+        let floraLabelView = FloraValueView()
+        floraLabelView.title = "Sensor-Name:"
+        return floraLabelView
+    }()
+    
     private lazy var temperatureLabelView: FloraValueView = {
         let floraLabelView = FloraValueView()
         floraLabelView.title = "Temperature:"
@@ -70,6 +76,7 @@ public final class FloraTableViewCell: UITableViewCell {
         self.contentView.addSubview(innerStackView)
         
         self.innerStackView.addArrangedSubview(self.sensorLabelView)
+        self.innerStackView.addArrangedSubview(self.sensorNameLabelView)
         self.innerStackView.addArrangedSubview(self.temperatureLabelView)
         self.innerStackView.addArrangedSubview(self.luxLabelView)
         self.innerStackView.addArrangedSubview(self.moistureLabelView)
@@ -87,6 +94,7 @@ public final class FloraTableViewCell: UITableViewCell {
     
     public func configure(withFloraSensorData data: FloraSensorData) {
         self.sensorLabelView.value = data.sensorId.uuidString
+        self.sensorNameLabelView.value = data.sensorName ?? ""
         self.temperatureLabelView.value = "\(data.temp)"
         self.luxLabelView.value = "\(data.lux)"
         self.moistureLabelView.value = "\(data.moisture)"

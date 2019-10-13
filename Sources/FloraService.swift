@@ -19,6 +19,7 @@ protocol FloraServiceDelegate: class {
 
 public class FloraSensorData: CustomDebugStringConvertible {
     public fileprivate(set) var sensorId: UUID
+    public fileprivate(set) var sensorName: String?
     public fileprivate(set) var temp: Float
     public fileprivate(set) var lux: Int
     public fileprivate(set) var moisture: Int
@@ -29,8 +30,9 @@ public class FloraSensorData: CustomDebugStringConvertible {
         return "sensorId: \(sensorId.uuidString),\ntemp: \(temp),\nlux: \(lux),\nmoisture: \(moisture),\nconductivity: \(conductivity),\nbattery: \(battery)"
     }
     
-    init(sensorId: UUID) {
+    init(sensorId: UUID, sensorName: String?) {
         self.sensorId = sensorId
+        self.sensorName = sensorName
         self.temp = 0
         self.lux = 0
         self.moisture = 0
@@ -132,7 +134,7 @@ extension FloraService: CBCentralManagerDelegate {
 
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         self.delegate?.floraService(self, stateChanged: .deviceConnected(name: peripheral.name, uuid: peripheral.identifier))
-        discoveredSensorData[peripheral.identifier] = FloraSensorData(sensorId: peripheral.identifier)
+        discoveredSensorData[peripheral.identifier] = FloraSensorData(sensorId: peripheral.identifier, sensorName: peripheral.name)
         peripheral.delegate = self
         peripheral.discoverServices(nil)
     }
