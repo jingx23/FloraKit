@@ -15,17 +15,17 @@ import FloraKit
 class ViewController: UIViewController {
 
     // MARK: Properties
-    let floraKit = FloraKit()
+    private let floraKit = FloraKit()
     
-    /// The Label
-    lazy var label: UILabel = {
-        let label = UILabel()
-        label.text = "🚀\nFloraKit\nExample"
-        label.font = .systemFont(ofSize: 25, weight: .semibold)
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.textAlignment = .center
-        return label
+    private var modelData: [FloraSensorData] = []
+    
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 300
+        tableView.dataSource = self
+        tableView.register(FloraTableViewCell.self, forCellReuseIdentifier: "cell")
+        return tableView
     }()
     
     // MARK: View-Lifecycle
@@ -34,15 +34,37 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.floraKit.delegate = self
-        self.view.backgroundColor = .white
         self.floraKit.readAll()
+        
+        self.view.addSubview(self.tableView)
+        
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.tableView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
     }
     
-    /// LoadView
-    override func loadView() {
-        self.view = self.label
-    }
+}
 
+extension ViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return modelData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? FloraTableViewCell else {
+            assertionFailure("Wrong cell type")
+            return UITableViewCell()
+        }
+        cell.configure(withFloraSensorData: modelData[indexPath.row])
+
+        return cell
+    }
+    
 }
 
 extension ViewController: FloraKitDelegate {
@@ -55,8 +77,8 @@ extension ViewController: FloraKitDelegate {
         case .deviceConnected(let name, let uuid):
             print("Connected to \(name ?? "") \(uuid.uuidString)")
         case .recievedSensorData(let sensorData):
-            print(sensorData.debugDescription)
-            print("Sensor data recieved!")
+            self.modelData.append(sensorData)
+            self.tableView.reloadData()
         }
     }
 }

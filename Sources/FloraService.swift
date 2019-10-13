@@ -18,7 +18,7 @@ protocol FloraServiceDelegate: class {
 }
 
 public class FloraSensorData: CustomDebugStringConvertible {
-    let sensorId: UUID
+    public fileprivate(set) var sensorId: UUID
     public fileprivate(set) var temp: Float
     public fileprivate(set) var lux: Int
     public fileprivate(set) var moisture: Int

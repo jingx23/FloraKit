@@ -21,6 +21,8 @@
 		3D9C432E2274629C000A6585 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9C432C2274629C000A6585 /* LaunchScreen.storyboard */; };
 		3D9C433422746323000A6585 /* FloraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* FloraKit.framework */; };
 		3D9C433522746323000A6585 /* FloraKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* FloraKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		437178BD235271F5006FB84B /* FloraValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437178BC235271F5006FB84B /* FloraValueView.swift */; };
+		43996FA7234FCC1A00B68D53 /* FloraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43996FA6234FCC1A00B68D53 /* FloraTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		3D9C432D2274629C000A6585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3D9C432F2274629C000A6585 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DB91AC4229AC263002668DA /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
+		437178BC235271F5006FB84B /* FloraValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloraValueView.swift; sourceTree = "<group>"; };
+		43996FA6234FCC1A00B68D53 /* FloraTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloraTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +207,8 @@
 			children = (
 				3D9C43232274629B000A6585 /* AppDelegate.swift */,
 				3D9C43252274629B000A6585 /* ViewController.swift */,
+				43996FA6234FCC1A00B68D53 /* FloraTableViewCell.swift */,
+				437178BC235271F5006FB84B /* FloraValueView.swift */,
 				3D9C4333227462B9000A6585 /* Resources */,
 			);
 			path = Example;
@@ -501,6 +507,8 @@
 			files = (
 				3D9C43262274629B000A6585 /* ViewController.swift in Sources */,
 				3D9C43242274629B000A6585 /* AppDelegate.swift in Sources */,
+				43996FA7234FCC1A00B68D53 /* FloraTableViewCell.swift in Sources */,
+				437178BD235271F5006FB84B /* FloraValueView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
