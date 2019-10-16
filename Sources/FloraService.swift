@@ -8,7 +8,7 @@ import CoreBluetooth
 
 public enum FloraServiceState {
     case beginScan
-    case endScan
+    case endScan(deviceIds: [UUID])
     case deviceConnected(name: String?, uuid: UUID)
     case recievedSensorData(data: FloraSensorData)
 }
@@ -108,7 +108,7 @@ class FloraService: NSObject {
             guard let self = self else { return }
             self.manager.stopScan()
             completion(self.discoveredSensors)
-            self.delegate?.floraService(self, stateChanged: .endScan)
+            self.delegate?.floraService(self, stateChanged: .endScan(deviceIds: self.discoveredSensors.map { $0.identifier }))
         }
     }
 

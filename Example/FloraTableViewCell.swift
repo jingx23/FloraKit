@@ -21,20 +21,19 @@ public final class FloraTableViewCell: UITableViewCell {
     
     private lazy var sensorLabelView: FloraValueView = {
         let floraLabelView = FloraValueView()
-        floraLabelView.title = "Sensor-ID:"
+        floraLabelView.title = "ID:"
         return floraLabelView
     }()
     
     private lazy var sensorNameLabelView: FloraValueView = {
         let floraLabelView = FloraValueView()
-        floraLabelView.title = "Sensor-Name:"
+        floraLabelView.title = "Name:"
         return floraLabelView
     }()
     
     private lazy var temperatureLabelView: FloraValueView = {
         let floraLabelView = FloraValueView()
         floraLabelView.title = "Temperature:"
-        floraLabelView.value = "TemperatureX:"
         return floraLabelView
     }()
 
