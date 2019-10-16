@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     private let floraKit = FloraKit()
     
     private var modelData: [FloraSensorData] = []
+    private var numberOfDevices = 0
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -26,6 +27,13 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(FloraTableViewCell.self, forCellReuseIdentifier: "cell")
         return tableView
+    }()
+    
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicatorView = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        indicatorView.style = .large
+        indicatorView.center = self.view.center
+        return indicatorView
     }()
     
     // MARK: View-Lifecycle
@@ -37,6 +45,9 @@ class ViewController: UIViewController {
         self.floraKit.readAll()
         
         self.view.addSubview(self.tableView)
+        self.view.addSubview(self.activityIndicator)
+        
+        self.activityIndicator.startAnimating()
         
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -45,6 +56,11 @@ class ViewController: UIViewController {
             self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.activityIndicator.center = self.view.center
     }
     
 }
@@ -72,13 +88,17 @@ extension ViewController: FloraKitDelegate {
         switch state {
         case .beginScan:
             print("Begin Scan")
-        case .endScan:
-            print("Scan complete")
+        case .endScan(let deviceIds):
+            self.numberOfDevices = deviceIds.count
+            print("Scan complete, found \(self.numberOfDevices)")
         case .deviceConnected(let name, let uuid):
             print("Connected to \(name ?? "") \(uuid.uuidString)")
         case .recievedSensorData(let sensorData):
             self.modelData.append(sensorData)
             self.tableView.reloadData()
+            if self.modelData.count == self.numberOfDevices {
+                self.activityIndicator.stopAnimating()
+            }
         }
     }
 }
