@@ -91,10 +91,12 @@ extension ViewController: FloraKitDelegate {
         case .deviceConnected(let name, let uuid):
             print("Connected to \(name ?? "") \(uuid.uuidString)")
         case .recievedSensorData(let sensorData):
-            self.modelData.append(sensorData)
-            self.tableView.reloadData()
-            if self.modelData.count == self.numberOfDevices {
-                self.activityIndicator.stopAnimating()
+            DispatchQueue.main.async {
+                self.modelData.append(sensorData)
+                self.tableView.reloadData()
+                if self.modelData.count == self.numberOfDevices {
+                    self.activityIndicator.stopAnimating()
+                }
             }
         }
     }
