@@ -62,7 +62,7 @@ class FloraService: NSObject {
     public init(delegate: FloraServiceDelegate? = nil) {
         super.init()
         self.delegate = delegate
-        self.manager = CBCentralManager(delegate: self, queue: DispatchQueue.main, options: nil)
+        self.manager = CBCentralManager(delegate: self, queue: DispatchQueue(label: "florakit.floraService.bluetooth"), options: nil)
     }
     
     func scan(withDuration duration: Int = FloraService.defaultScanDuration, completion: @escaping (_ floraDevices: [UUID]) -> Void) {
