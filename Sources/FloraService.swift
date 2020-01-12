@@ -7,8 +7,6 @@ import Foundation
 import CoreBluetooth
 
 public enum FloraServiceState {
-    case beginScan
-    case endScan(deviceIds: [UUID])
     case deviceConnected(name: String?, uuid: UUID)
     case recievedSensorData(data: FloraSensorData)
 }
@@ -46,12 +44,14 @@ class FloraService: NSObject {
     
     private static let miFloraPrefix: String = "FE95"
     public static let defaultScanDuration: Int = 10
+    public static let defaultReadTimeout: Int = 10
     
     private var discoveredSensors: [CBPeripheral] = []
     private var discoveredSensorData: [UUID: FloraSensorData] = [:]
     open weak var delegate: FloraServiceDelegate?
-    open var scanDuration: Int = FloraService.defaultScanDuration
-    private var manager = CBCentralManager()
+    // swiftlint:disable implicitly_unwrapped_optional
+    private var manager: CBCentralManager!
+    // swiftlint:enable implicitly_unwrapped_optional
     private var sensorsToDiscover: [CBUUID] = []
 
     private let serviceUUID = CBUUID(string: "00001204-0000-1000-8000-00805F9B34FB")
@@ -59,31 +59,21 @@ class FloraService: NSObject {
     private let sensorDataUUID = CBUUID(string: "00001A01-0000-1000-8000-00805F9B34FB")
     private let batteryUUID = CBUUID(string: "00001A02-0000-1000-8000-00805F9B34FB")
     
-    public convenience init(scanDuration: Int = FloraService.defaultScanDuration, delegate: FloraServiceDelegate?) {
-        self.init()
-        self.scanDuration = scanDuration
+    public init(delegate: FloraServiceDelegate? = nil) {
+        super.init()
         self.delegate = delegate
+        self.manager = CBCentralManager(delegate: self, queue: DispatchQueue.main, options: nil)
     }
     
-    func scan(completion: @escaping (_ floraDevices: [UUID]) -> Void) {
-        self.scan { (peripherals: [CBPeripheral]) in
+    func scan(withDuration duration: Int = FloraService.defaultScanDuration, completion: @escaping (_ floraDevices: [UUID]) -> Void) {
+        self.scan(withDuration: duration) { (peripherals: [CBPeripheral]) in
             completion(peripherals.compactMap( { $0.identifier } ))
         }
     }
         
-    func readAll() {
-        self.scan {[weak self] (peripherals: [CBPeripheral]) in
-            for peripheral in peripherals {
-                self?.manager.connect(peripheral)
-            }
-        }
-    }
-    
-    func read(uuids: [UUID]) {
+    func read(withTimeout timeout: Int = FloraService.defaultReadTimeout, uuids: [UUID]) {
         self.discoveredSensors = []
-        self.manager = CBCentralManager(delegate: self, queue: DispatchQueue.main, options: nil)
         var runCount = 0
-        
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) {[weak self] timer in
             guard let self = self else {
                 return
@@ -91,7 +81,7 @@ class FloraService: NSObject {
             self.discoveredSensors = self.manager.retrievePeripherals(withIdentifiers: uuids)
             runCount += 1
             
-            if runCount == self.scanDuration || (self.discoveredSensors.count == uuids.count) {
+            if runCount == timeout || (self.discoveredSensors.count == uuids.count) {
                 timer.invalidate()
                 for sensor in self.discoveredSensors {
                     self.manager.connect(sensor)
@@ -100,22 +90,18 @@ class FloraService: NSObject {
         }
     }
     
-    private func scan(completion: @escaping (_ floraDevices: [CBPeripheral]) -> Void) {
-        self.delegate?.floraService(self, stateChanged: .beginScan)
+    private func scan(withDuration duration: Int, completion: @escaping (_ floraDevices: [CBPeripheral]) -> Void) {
         self.discoveredSensors = []
-        self.manager = CBCentralManager(delegate: self, queue: DispatchQueue.main, options: nil)
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double(self.scanDuration)) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + Double(duration)) { [weak self] in
             guard let self = self else { return }
             self.manager.stopScan()
             completion(self.discoveredSensors)
-            self.delegate?.floraService(self, stateChanged: .endScan(deviceIds: self.discoveredSensors.map { $0.identifier }))
         }
     }
 
     private func discoverPeripherals() {
         manager.scanForPeripherals(withServices: [CBUUID(string: FloraService.miFloraPrefix)], options: nil)
     }
-
 }
 
 extension FloraService: CBCentralManagerDelegate {

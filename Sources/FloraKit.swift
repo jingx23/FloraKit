@@ -15,29 +15,22 @@ public protocol FloraKitDelegate: class {
 
 /// This class is only a wrapper class around FloraService to avoid exposing unecessary delegate methods
 public class FloraKit: NSObject {
+    public static let defaultScanDuration: Int = FloraService.defaultScanDuration
+    public static let defaultReadTimeout: Int = FloraService.defaultReadTimeout
     private let floraService: FloraService = FloraService()
     public weak var delegate: FloraKitDelegate?
     
-    convenience override public init() {
-        self.init(scanDuration: nil)
-    }
-    
-    public init(scanDuration: Int?) {
+    public override init() {
         super.init()
-        self.floraService.scanDuration = scanDuration ?? FloraService.defaultScanDuration
         self.floraService.delegate = self
     }
     
-    public func scan(completion: @escaping (_ floraDevices: [UUID]) -> Void) {
-        self.floraService.scan(completion: completion)
+    public func scan(withDuration duration: Int = FloraKit.defaultScanDuration, completion: @escaping (_ floraDevices: [UUID]) -> Void) {
+        self.floraService.scan(withDuration: duration, completion: completion)
     }
     
-    public func read(uuids: [UUID]) {
-        self.floraService.read(uuids: uuids)
-    }
-
-    public func readAll() {
-        self.floraService.readAll()
+    public func read(withTimeout timeout: Int = FloraKit.defaultReadTimeout, uuids: [UUID]) {
+        self.floraService.read(withTimeout: timeout, uuids: uuids)
     }
 }
 

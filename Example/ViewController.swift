@@ -42,8 +42,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.floraKit.delegate = self
-        self.floraKit.readAll()
-        
+        self.floraKit.scan { (uuids) in
+            self.numberOfDevices = uuids.count
+            self.floraKit.read(uuids: uuids)
+        }        
         self.view.addSubview(self.tableView)
         self.view.addSubview(self.activityIndicator)
         
@@ -86,11 +88,6 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: FloraKitDelegate {
     func floraKit(_ floraKit: FloraKit, stateChanged state: FloraServiceState) {
         switch state {
-        case .beginScan:
-            print("Begin Scan")
-        case .endScan(let deviceIds):
-            self.numberOfDevices = deviceIds.count
-            print("Scan complete, found \(self.numberOfDevices)")
         case .deviceConnected(let name, let uuid):
             print("Connected to \(name ?? "") \(uuid.uuidString)")
         case .recievedSensorData(let sensorData):
