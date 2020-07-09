@@ -58,19 +58,33 @@ class FloraService: NSObject {
     private let writeModeUUID = CBUUID(string: "00001A00-0000-1000-8000-00805F9B34FB")
     private let sensorDataUUID = CBUUID(string: "00001A01-0000-1000-8000-00805F9B34FB")
     private let batteryUUID = CBUUID(string: "00001A02-0000-1000-8000-00805F9B34FB")
-    
+    private let writeModeMagicBytes: [UInt8] = [0xA0, 0x1F]
+
+    ///
+    /// Initializer
+    /// - Parameter delegate: `FloraServiceDelegate`.
     public init(delegate: FloraServiceDelegate? = nil) {
         super.init()
         self.delegate = delegate
         self.manager = CBCentralManager(delegate: self, queue: DispatchQueue(label: "florakit.floraService.bluetooth"), options: nil)
     }
     
+    ///
+    /// Scan for flora devices
+    /// - Parameters:
+    ///   - duration: Scanning duration in seconds (if not applied `FloraService.defaultScanDuration` is used).
+    ///   - completion: Flora device UUID´s.
     func scan(withDuration duration: Int = FloraService.defaultScanDuration, completion: @escaping (_ floraDevices: [UUID]) -> Void) {
         self.scan(withDuration: duration) { (peripherals: [CBPeripheral]) in
             completion(peripherals.compactMap( { $0.identifier } ))
         }
     }
-        
+
+    ///
+    /// Start reading from flora devices
+    /// - Parameters:
+    ///   - timeout: Reading timeout in seconds (if not applied `FloraService.defaultReadTimeout` is used).
+    ///   - uuids: The UUID´s for flora devices to read from.
     func read(withTimeout timeout: Int = FloraService.defaultReadTimeout, uuids: [UUID]) {
         self.discoveredSensors = []
         var runCount = 0
@@ -139,8 +153,7 @@ extension FloraService: CBPeripheralDelegate {
         guard let writeModeCharacteristic = service.characteristics?.filter({ $0.uuid == writeModeUUID }).first else {
             return
         }
-        let writeModeMagicBytes: [UInt8] = [0xA0, 0x1F]
-        peripheral.writeValue(Data(writeModeMagicBytes), for: writeModeCharacteristic, type: .withResponse)
+        peripheral.writeValue(Data(self.writeModeMagicBytes), for: writeModeCharacteristic, type: .withResponse)
     }
 
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {

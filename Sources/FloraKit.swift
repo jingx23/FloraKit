@@ -9,7 +9,14 @@
 // Include Foundation
 @_exported import Foundation
 
+///
+/// FloraKit Delegate
 public protocol FloraKitDelegate: class {
+    ///
+    /// Reports state changes from flora devices
+    /// - Parameters:
+    ///   - floraKit: FloraKit object.
+    ///   - state: `FloraService.FloraServiceState` info.
     func floraKit(_ floraKit: FloraKit, stateChanged state: FloraServiceState)
 }
 
@@ -24,11 +31,21 @@ public class FloraKit: NSObject {
         super.init()
         self.floraService.delegate = self
     }
-    
+
+    ///
+    /// Scan for flora devices
+    /// - Parameters:
+    ///   - duration: Scanning duration in seconds (if not applied `FloraService.defaultScanDuration` is used).
+    ///   - completion: Flora device UUID´s.
     public func scan(withDuration duration: Int = FloraKit.defaultScanDuration, completion: @escaping (_ floraDevices: [UUID]) -> Void) {
         self.floraService.scan(withDuration: duration, completion: completion)
     }
-    
+
+    ///
+    /// Start reading from flora devices
+    /// - Parameters:
+    ///   - timeout: Reading timeout in seconds (if not applied `FloraService.defaultReadTimeout` is used).
+    ///   - uuids: The UUID´s for flora devices to read from.
     public func read(withTimeout timeout: Int = FloraKit.defaultReadTimeout, uuids: [UUID]) {
         self.floraService.read(withTimeout: timeout, uuids: uuids)
     }
