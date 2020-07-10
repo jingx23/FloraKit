@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3D9C43202274629B000A6585"
-               BuildableName = "Example.app"
+               BlueprintIdentifier = "4302CF1024B7E5B5008D49CB"
+               BuildableName = "FloraKit Demo.app"
                BlueprintName = "Example"
                ReferencedContainer = "container:FloraKit.xcodeproj">
             </BuildableReference>
@@ -29,17 +29,6 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D9C43202274629B000A6585"
-            BuildableName = "Example.app"
-            BlueprintName = "Example"
-            ReferencedContainer = "container:FloraKit.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -55,14 +44,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D9C43202274629B000A6585"
-            BuildableName = "Example.app"
+            BlueprintIdentifier = "4302CF1024B7E5B5008D49CB"
+            BuildableName = "FloraKit Demo.app"
             BlueprintName = "Example"
             ReferencedContainer = "container:FloraKit.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -74,8 +61,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3D9C43202274629B000A6585"
-            BuildableName = "Example.app"
+            BlueprintIdentifier = "4302CF1024B7E5B5008D49CB"
+            BuildableName = "FloraKit Demo.app"
             BlueprintName = "Example"
             ReferencedContainer = "container:FloraKit.xcodeproj">
          </BuildableReference>

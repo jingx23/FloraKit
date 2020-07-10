@@ -15,14 +15,14 @@
 		3D9C42FC22746078000A6585 /* FloraKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C42D722745CDE000A6585 /* FloraKitTests.swift */; };
 		3D9C431622746198000A6585 /* FloraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C42C522745A07000A6585 /* FloraKit.framework */; };
 		3D9C431C227461AF000A6585 /* FloraKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C42D722745CDE000A6585 /* FloraKitTests.swift */; };
-		3D9C43242274629B000A6585 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C43232274629B000A6585 /* AppDelegate.swift */; };
-		3D9C43262274629B000A6585 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9C43252274629B000A6585 /* ViewController.swift */; };
-		3D9C432B2274629C000A6585 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D9C432A2274629C000A6585 /* Assets.xcassets */; };
-		3D9C432E2274629C000A6585 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D9C432C2274629C000A6585 /* LaunchScreen.storyboard */; };
-		3D9C433422746323000A6585 /* FloraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* FloraKit.framework */; };
-		3D9C433522746323000A6585 /* FloraKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* FloraKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		437178BD235271F5006FB84B /* FloraValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437178BC235271F5006FB84B /* FloraValueView.swift */; };
-		43996FA7234FCC1A00B68D53 /* FloraTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43996FA6234FCC1A00B68D53 /* FloraTableViewCell.swift */; };
+		4302CF1424B7E5B5008D49CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4302CF1324B7E5B5008D49CB /* AppDelegate.swift */; };
+		4302CF1624B7E5B5008D49CB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4302CF1524B7E5B5008D49CB /* SceneDelegate.swift */; };
+		4302CF1824B7E5B5008D49CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4302CF1724B7E5B5008D49CB /* ContentView.swift */; };
+		4302CF1A24B7E5B6008D49CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4302CF1924B7E5B6008D49CB /* Assets.xcassets */; };
+		4302CF1D24B7E5B6008D49CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4302CF1C24B7E5B6008D49CB /* Preview Assets.xcassets */; };
+		4302CF2024B7E5B6008D49CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4302CF1E24B7E5B6008D49CB /* LaunchScreen.storyboard */; };
+		4395EA5024B7EAF6009D9DEE /* FloraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* FloraKit.framework */; };
+		4395EA5124B7EAF6009D9DEE /* FloraKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* FloraKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +40,7 @@
 			remoteGlobalIDString = 3D9C42C422745A07000A6585;
 			remoteInfo = "FloraKit-macOS";
 		};
-		3D9C433622746323000A6585 /* PBXContainerItemProxy */ = {
+		4395EA4D24B7EAD1009D9DEE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3D9C428722745894000A6585 /* Project object */;
 			proxyType = 1;
@@ -50,13 +50,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		3D9C433822746323000A6585 /* Embed Frameworks */ = {
+		4395EA5224B7EAF6009D9DEE /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3D9C433522746323000A6585 /* FloraKit.framework in Embed Frameworks */,
+				4395EA5124B7EAF6009D9DEE /* FloraKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,15 +86,15 @@
 		3D9C42F12274604A000A6585 /* FloraKit-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FloraKit-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9C43012274611B000A6585 /* FloraKit-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FloraKit-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D9C431122746198000A6585 /* FloraKit-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FloraKit-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D9C43212274629B000A6585 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D9C43232274629B000A6585 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		3D9C43252274629B000A6585 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3D9C432A2274629C000A6585 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3D9C432D2274629C000A6585 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		3D9C432F2274629C000A6585 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3DB91AC4229AC263002668DA /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .travis.yml; sourceTree = SOURCE_ROOT; };
-		437178BC235271F5006FB84B /* FloraValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloraValueView.swift; sourceTree = "<group>"; };
-		43996FA6234FCC1A00B68D53 /* FloraTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloraTableViewCell.swift; sourceTree = "<group>"; };
+		4302CF1124B7E5B5008D49CB /* FloraKit Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FloraKit Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4302CF1324B7E5B5008D49CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4302CF1524B7E5B5008D49CB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		4302CF1724B7E5B5008D49CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4302CF1924B7E5B6008D49CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4302CF1C24B7E5B6008D49CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		4302CF1F24B7E5B6008D49CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4302CF2124B7E5B6008D49CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,11 +128,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D9C431E2274629B000A6585 /* Frameworks */ = {
+		4302CF0E24B7E5B5008D49CB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D9C433422746323000A6585 /* FloraKit.framework in Frameworks */,
+				4395EA5024B7EAF6009D9DEE /* FloraKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,9 +144,10 @@
 			children = (
 				3D9C42A0227458FA000A6585 /* Sources */,
 				3D9C42A32274595F000A6585 /* Tests */,
-				3D9C43222274629B000A6585 /* Example */,
 				3D9C429B227458E8000A6585 /* Configs */,
+				4302CF1224B7E5B5008D49CB /* Example */,
 				3D9C429122745894000A6585 /* Products */,
+				4395EA4A24B7EAD1009D9DEE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -160,7 +161,7 @@
 				3D9C42F12274604A000A6585 /* FloraKit-iOSTests.xctest */,
 				3D9C43012274611B000A6585 /* FloraKit-tvOSTests.xctest */,
 				3D9C431122746198000A6585 /* FloraKit-macOSTests.xctest */,
-				3D9C43212274629B000A6585 /* Example.app */,
+				4302CF1124B7E5B5008D49CB /* FloraKit Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,26 +203,33 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		3D9C43222274629B000A6585 /* Example */ = {
+		4302CF1224B7E5B5008D49CB /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				3D9C43232274629B000A6585 /* AppDelegate.swift */,
-				3D9C43252274629B000A6585 /* ViewController.swift */,
-				43996FA6234FCC1A00B68D53 /* FloraTableViewCell.swift */,
-				437178BC235271F5006FB84B /* FloraValueView.swift */,
-				3D9C4333227462B9000A6585 /* Resources */,
+				4302CF1324B7E5B5008D49CB /* AppDelegate.swift */,
+				4302CF1524B7E5B5008D49CB /* SceneDelegate.swift */,
+				4302CF1724B7E5B5008D49CB /* ContentView.swift */,
+				4302CF1924B7E5B6008D49CB /* Assets.xcassets */,
+				4302CF1E24B7E5B6008D49CB /* LaunchScreen.storyboard */,
+				4302CF2124B7E5B6008D49CB /* Info.plist */,
+				4302CF1B24B7E5B6008D49CB /* Preview Content */,
 			);
 			path = Example;
 			sourceTree = "<group>";
 		};
-		3D9C4333227462B9000A6585 /* Resources */ = {
+		4302CF1B24B7E5B6008D49CB /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				3D9C432A2274629C000A6585 /* Assets.xcassets */,
-				3D9C432C2274629C000A6585 /* LaunchScreen.storyboard */,
-				3D9C432F2274629C000A6585 /* Info.plist */,
+				4302CF1C24B7E5B6008D49CB /* Preview Assets.xcassets */,
 			);
-			path = Resources;
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		4395EA4A24B7EAD1009D9DEE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,23 +326,23 @@
 			productReference = 3D9C431122746198000A6585 /* FloraKit-macOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		3D9C43202274629B000A6585 /* Example */ = {
+		4302CF1024B7E5B5008D49CB /* Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3D9C43302274629C000A6585 /* Build configuration list for PBXNativeTarget "Example" */;
+			buildConfigurationList = 4302CF2224B7E5B6008D49CB /* Build configuration list for PBXNativeTarget "Example" */;
 			buildPhases = (
-				3D9C431D2274629B000A6585 /* Sources */,
-				3D9C431E2274629B000A6585 /* Frameworks */,
-				3D9C431F2274629B000A6585 /* Resources */,
-				3D9C433822746323000A6585 /* Embed Frameworks */,
+				4302CF0D24B7E5B5008D49CB /* Sources */,
+				4302CF0E24B7E5B5008D49CB /* Frameworks */,
+				4302CF0F24B7E5B5008D49CB /* Resources */,
+				4395EA5224B7EAF6009D9DEE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3D9C433722746323000A6585 /* PBXTargetDependency */,
+				4395EA4E24B7EAD1009D9DEE /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
-			productReference = 3D9C43212274629B000A6585 /* Example.app */;
+			productReference = 4302CF1124B7E5B5008D49CB /* FloraKit Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -343,7 +351,7 @@
 		3D9C428722745894000A6585 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Jan Scheithauer";
 				TargetAttributes = {
@@ -360,8 +368,8 @@
 					3D9C431022746198000A6585 = {
 						CreatedOnToolsVersion = 10.2.1;
 					};
-					3D9C43202274629B000A6585 = {
-						CreatedOnToolsVersion = 10.2.1;
+					4302CF1024B7E5B5008D49CB = {
+						CreatedOnToolsVersion = 11.5;
 					};
 				};
 			};
@@ -382,7 +390,7 @@
 				3D9C42C422745A07000A6585 /* FloraKit-macOS */,
 				3D9C42F02274604A000A6585 /* FloraKit-iOSTests */,
 				3D9C431022746198000A6585 /* FloraKit-macOSTests */,
-				3D9C43202274629B000A6585 /* Example */,
+				4302CF1024B7E5B5008D49CB /* Example */,
 			);
 		};
 /* End PBXProject section */
@@ -416,12 +424,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D9C431F2274629B000A6585 /* Resources */ = {
+		4302CF0F24B7E5B5008D49CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D9C432E2274629C000A6585 /* LaunchScreen.storyboard in Resources */,
-				3D9C432B2274629C000A6585 /* Assets.xcassets in Resources */,
+				4302CF2024B7E5B6008D49CB /* LaunchScreen.storyboard in Resources */,
+				4302CF1D24B7E5B6008D49CB /* Preview Assets.xcassets in Resources */,
+				4302CF1A24B7E5B6008D49CB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,14 +510,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3D9C431D2274629B000A6585 /* Sources */ = {
+		4302CF0D24B7E5B5008D49CB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D9C43262274629B000A6585 /* ViewController.swift in Sources */,
-				3D9C43242274629B000A6585 /* AppDelegate.swift in Sources */,
-				43996FA7234FCC1A00B68D53 /* FloraTableViewCell.swift in Sources */,
-				437178BD235271F5006FB84B /* FloraValueView.swift in Sources */,
+				4302CF1424B7E5B5008D49CB /* AppDelegate.swift in Sources */,
+				4302CF1624B7E5B5008D49CB /* SceneDelegate.swift in Sources */,
+				4302CF1824B7E5B5008D49CB /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,18 +533,18 @@
 			target = 3D9C42C422745A07000A6585 /* FloraKit-macOS */;
 			targetProxy = 3D9C431722746198000A6585 /* PBXContainerItemProxy */;
 		};
-		3D9C433722746323000A6585 /* PBXTargetDependency */ = {
+		4395EA4E24B7EAD1009D9DEE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3D9C428F22745894000A6585 /* FloraKit-iOS */;
-			targetProxy = 3D9C433622746323000A6585 /* PBXContainerItemProxy */;
+			targetProxy = 4395EA4D24B7EAD1009D9DEE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3D9C432C2274629C000A6585 /* LaunchScreen.storyboard */ = {
+		4302CF1E24B7E5B6008D49CB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3D9C432D2274629C000A6585 /* Base */,
+				4302CF1F24B7E5B6008D49CB /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -867,45 +875,43 @@
 			};
 			name = Release;
 		};
-		3D9C43312274629C000A6585 /* Debug */ = {
+		4302CF2324B7E5B6008D49CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Example/Preview Content\"";
 				DEVELOPMENT_TEAM = N642Z87WUJ;
-				INFOPLIST_FILE = Example/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "net.jingx-iOS.Example";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = net.jingx.Example;
+				PRODUCT_NAME = "FloraKit Demo";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		3D9C43322274629C000A6585 /* Release */ = {
+		4302CF2424B7E5B6008D49CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Example/Preview Content\"";
 				DEVELOPMENT_TEAM = N642Z87WUJ;
-				INFOPLIST_FILE = Example/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Example/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "net.jingx-iOS.Example";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PRODUCT_BUNDLE_IDENTIFIER = net.jingx.Example;
+				PRODUCT_NAME = "FloraKit Demo";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -959,11 +965,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3D9C43302274629C000A6585 /* Build configuration list for PBXNativeTarget "Example" */ = {
+		4302CF2224B7E5B6008D49CB /* Build configuration list for PBXNativeTarget "Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3D9C43312274629C000A6585 /* Debug */,
-				3D9C43322274629C000A6585 /* Release */,
+				4302CF2324B7E5B6008D49CB /* Debug */,
+				4302CF2424B7E5B6008D49CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
