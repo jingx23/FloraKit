@@ -21,6 +21,7 @@
 		4302CF1A24B7E5B6008D49CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4302CF1924B7E5B6008D49CB /* Assets.xcassets */; };
 		4302CF1D24B7E5B6008D49CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4302CF1C24B7E5B6008D49CB /* Preview Assets.xcassets */; };
 		4302CF2024B7E5B6008D49CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4302CF1E24B7E5B6008D49CB /* LaunchScreen.storyboard */; };
+		433649AA24B918E30033342A /* FloraObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433649A924B918E30033342A /* FloraObserver.swift */; };
 		4395EA5024B7EAF6009D9DEE /* FloraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* FloraKit.framework */; };
 		4395EA5124B7EAF6009D9DEE /* FloraKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* FloraKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -95,6 +96,7 @@
 		4302CF1C24B7E5B6008D49CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4302CF1F24B7E5B6008D49CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4302CF2124B7E5B6008D49CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		433649A924B918E30033342A /* FloraObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloraObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +211,7 @@
 				4302CF1324B7E5B5008D49CB /* AppDelegate.swift */,
 				4302CF1524B7E5B5008D49CB /* SceneDelegate.swift */,
 				4302CF1724B7E5B5008D49CB /* ContentView.swift */,
+				433649A924B918E30033342A /* FloraObserver.swift */,
 				4302CF1924B7E5B6008D49CB /* Assets.xcassets */,
 				4302CF1E24B7E5B6008D49CB /* LaunchScreen.storyboard */,
 				4302CF2124B7E5B6008D49CB /* Info.plist */,
@@ -516,6 +519,7 @@
 			files = (
 				4302CF1424B7E5B5008D49CB /* AppDelegate.swift in Sources */,
 				4302CF1624B7E5B5008D49CB /* SceneDelegate.swift in Sources */,
+				433649AA24B918E30033342A /* FloraObserver.swift in Sources */,
 				4302CF1824B7E5B5008D49CB /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

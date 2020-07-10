@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var floraObserver: FloraObserver = FloraObserver()
+    
     var body: some View {
-        Text("Hello, World!")
+        Text(self.floraObserver.loading ? "Loading" : "Ready")
     }
 }
 
