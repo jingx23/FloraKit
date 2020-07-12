@@ -12,7 +12,11 @@ struct ContentView: View {
     @ObservedObject var floraObserver: FloraObserver = FloraObserver()
     
     var body: some View {
-        Text(self.floraObserver.loading ? "Loading" : "Ready")
+        List() {
+            ForEach(floraObserver.floraViewDataset) { floraViewData in
+                FloraRowView(floraViewData: floraViewData).tag(floraViewData)
+            }
+        }
     }
 }
 

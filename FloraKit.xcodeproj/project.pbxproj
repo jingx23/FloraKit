@@ -24,6 +24,8 @@
 		433649AA24B918E30033342A /* FloraObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 433649A924B918E30033342A /* FloraObserver.swift */; };
 		4395EA5024B7EAF6009D9DEE /* FloraKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* FloraKit.framework */; };
 		4395EA5124B7EAF6009D9DEE /* FloraKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D9C429022745894000A6585 /* FloraKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		43A7F7FB24BBAEFA00A382EF /* FloraRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7F7FA24BBAEFA00A382EF /* FloraRowView.swift */; };
+		43A7F7FD24BBB6DB00A382EF /* FloraViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A7F7FC24BBB6DB00A382EF /* FloraViewData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		4302CF1F24B7E5B6008D49CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4302CF2124B7E5B6008D49CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		433649A924B918E30033342A /* FloraObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloraObserver.swift; sourceTree = "<group>"; };
+		43A7F7FA24BBAEFA00A382EF /* FloraRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloraRowView.swift; sourceTree = "<group>"; };
+		43A7F7FC24BBB6DB00A382EF /* FloraViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloraViewData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +216,8 @@
 				4302CF1524B7E5B5008D49CB /* SceneDelegate.swift */,
 				4302CF1724B7E5B5008D49CB /* ContentView.swift */,
 				433649A924B918E30033342A /* FloraObserver.swift */,
+				43A7F7FA24BBAEFA00A382EF /* FloraRowView.swift */,
+				43A7F7FC24BBB6DB00A382EF /* FloraViewData.swift */,
 				4302CF1924B7E5B6008D49CB /* Assets.xcassets */,
 				4302CF1E24B7E5B6008D49CB /* LaunchScreen.storyboard */,
 				4302CF2124B7E5B6008D49CB /* Info.plist */,
@@ -520,6 +526,8 @@
 				4302CF1424B7E5B5008D49CB /* AppDelegate.swift in Sources */,
 				4302CF1624B7E5B5008D49CB /* SceneDelegate.swift in Sources */,
 				433649AA24B918E30033342A /* FloraObserver.swift in Sources */,
+				43A7F7FD24BBB6DB00A382EF /* FloraViewData.swift in Sources */,
+				43A7F7FB24BBAEFA00A382EF /* FloraRowView.swift in Sources */,
 				4302CF1824B7E5B5008D49CB /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

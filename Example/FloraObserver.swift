@@ -15,7 +15,7 @@ class FloraObserver: ObservableObject {
     
     @Published var loading: Bool = false
     
-    @Published private(set) var sensorData: [FloraSensorData] = [] {
+    @Published private(set) var floraViewDataset: [FloraViewData] = [] {
         didSet {
             didChange.send(self)
         }
@@ -41,8 +41,9 @@ extension FloraObserver: FloraKitDelegate {
             print("Connected to \(name ?? "") \(uuid.uuidString)")
         case .recievedSensorData(let sensorData):
             DispatchQueue.main.async {
-                self.sensorData.append(sensorData)
-                if self.sensorData.count == self.numberOfDevices {
+                let floraViewData = FloraViewData(sensorName: sensorData.sensorName, temp: sensorData.temp, lux: sensorData.lux, moisture: sensorData.moisture, conductivity: sensorData.conductivity, battery: sensorData.battery)
+                self.floraViewDataset.append(floraViewData)
+                if self.floraViewDataset.count == self.numberOfDevices {
                     self.loading = false
                 }
             }
