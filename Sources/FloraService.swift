@@ -15,7 +15,7 @@ protocol FloraServiceDelegate: class {
     func floraService(_ service: FloraService, stateChanged state: FloraServiceState)
 }
 
-public class FloraSensorData: CustomDebugStringConvertible {
+public class FloraSensorData: CustomDebugStringConvertible, Hashable {
     public fileprivate(set) var sensorId: UUID
     public fileprivate(set) var sensorName: String?
     public fileprivate(set) var temp: Float
@@ -36,6 +36,14 @@ public class FloraSensorData: CustomDebugStringConvertible {
         self.moisture = 0
         self.conductivity = 0
         self.battery = 0
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(sensorId)
+    }
+    
+    public static func == (lhs: FloraSensorData, rhs: FloraSensorData) -> Bool {
+        return lhs.sensorId == rhs.sensorId
     }
 
 }
